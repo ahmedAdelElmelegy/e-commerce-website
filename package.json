@@ -1,4 +1,5 @@
 {
+  
   "name": "e-commerce_api",
   "version": "1.0.0",
   "main": "index.js",
@@ -80,9 +81,10 @@
     "vary": "^1.1.2"
   },
   "scripts": {
-    "start-cors": "node run-cors-server.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon start.js"
+    "start": "node index.js"
+  },
+  "engines": {
+    "node": "20.16.0"
   },
   "keywords": [],
   "author": "",
