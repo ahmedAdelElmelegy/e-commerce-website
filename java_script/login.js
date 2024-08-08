@@ -49,7 +49,9 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .catch(error => {
             console.error('Error:', error);
-            alert('Login failed: ' + error.message);
+            if(error.message=='Login failed: This credentials does not meet any of our records, please make sure you have entered the right credentials'){
+                alert('password is wrong')
+            }
         });
     });
 });

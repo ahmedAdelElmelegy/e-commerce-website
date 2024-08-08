@@ -189,3 +189,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+// go to check out
+ document.getElementById('checkout').addEventListener('click',()=>{
+    window.location.href = 'check_out.html';
+
+
+ });
