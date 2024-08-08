@@ -24,9 +24,39 @@
                 <li><a href="contact.html">Contact</a></li>
                 <li><a href="signup.html" class="changeIcon">Sign Up</a></li>
                 <li><a class="active" href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a></li>
+                <li><a href="#" id="menu" class="menu-icon"><i class="fa-solid fa-bars"></i></a></li>
+
             </ul>
+            <div class="settings-menu" id="settingsMenu">
+                <div class="settings-item" id="profile_settings">
+                    <i class="fa-solid fa-user"></i>
+                    <span>Profile Settings</span>
+                </div>
+                <div class="settings-item" id="orders">
+                    <i class="fa-solid fa-box"></i>
+                    <span>Orders</span>
+                </div>
+                <div class="settings-item" id="payment_methods">
+                    <i class="fa-solid fa-credit-card"></i>
+                    <span>Payment Methods</span>
+                </div>
+                <div class="settings-item" id="logout">
+                    <i class="fa-solid fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </div>
+            </div>
         </div>
     </section>
+    <div id="dialog" class="dialog">
+        <div class="dialog-content">
+            <h2>Logout</h2>
+            <p>Are you sure you want to logout?</p>
+             <button id="logoutCancel">No</button>
+            <button id="logoutConfirm">Yes</button>
+           
+        </div>
+    </div>
+    
     <div class="shopping-cart-container">
         
         </button>

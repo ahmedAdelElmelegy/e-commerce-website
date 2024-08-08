@@ -310,10 +310,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// open dialog and make sign up
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// open dialog and make sign out
 
 document.addEventListener('DOMContentLoaded', () => {
-    const moreOptions = document.getElementById('moreOptions');
+    const moreOptions = document.getElementById('logout');
     const dialog = document.getElementById('dialog');
     const logoutConfirm = document.getElementById('logoutConfirm');
     const logoutCancel = document.getElementById('logoutCancel');
@@ -341,5 +355,38 @@ document.addEventListener('DOMContentLoaded', () => {
             snackbar.classList.remove('show');
         }, 3000); // Hide after 3 seconds
     }
+});
+
+// menu settings
+document.getElementById('menu').addEventListener('click', function(event) {
+    event.preventDefault();
+    var menu = document.getElementById('settingsMenu');
+    menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+});
+
+// Close the menu if clicked outside of it
+document.addEventListener('click', function(event) {
+    var menu = document.getElementById('settingsMenu');
+    var menuIcon = document.getElementById('menu');
+    if (!menu.contains(event.target) && !menuIcon.contains(event.target)) {
+        menu.style.display = 'none';
+    }
+});
+// navgate to settings profile
+document.addEventListener('DOMContentLoaded', function() {
+    // Event listeners for each settings item
+    document.getElementById('profile_settings').addEventListener('click', function() {
+        window.location.href ='profile_settings.html';
+    });
+
+    document.getElementById('orders').addEventListener('click', function() {
+        window.location.href ='cart.html ';
+    });
+
+    document.getElementById('payment_methods').addEventListener('click', function() {
+        window.location.href ='check_out.html ';
+    });
+
+    
 });
 

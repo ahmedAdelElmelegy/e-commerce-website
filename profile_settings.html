@@ -3,23 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" /> 
-    <link rel="stylesheet" href="style.css">
+    <title> Profile Settings</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+
+   <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <section id="header">
-        <a href="#"><img src="img/Logo (1).png" class="logo" alt=""></a>
+        <a href="#"><img src="img\Logo (1).png" class="logo" alt=""></a>
         <div>
             <ul id="navbar">
-                <li><a href="index.html">Home</a></li>
+                <li><a  href="index.html">Home</a></li>
                 <li><a href="shop.html">Shop</a></li>
                 <li><a href="blog.html">Blog</a></li>
-                <li><a class="active" href="about.html">About</a></li>
+                <li><a href="about.html">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
                 <li><a href="signup.html" class="changeIcon">Sign Up</a></li>
-                <li><a  href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a></li>
+                <li><a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a></li>
                 <li><a href="#" id="menu" class="menu-icon"><i class="fa-solid fa-bars"></i></a></li>
+
 
             </ul>
             <div class="settings-menu" id="settingsMenu">
@@ -42,35 +44,34 @@
             </div>
         </div>
     </section>
-    <div id="dialog" class="dialog">
-        <div class="dialog-content">
-            <h2>Logout</h2>
-            <p>Are you sure you want to logout?</p>
-             <button id="logoutCancel">No</button>
-            <button id="logoutConfirm">Yes</button>
-           
-        </div>
-    </div>
     
-    <section id="about-page" class="section-p1">
-        <div class="about-header">
-            <h1>About Us</h1>
-            <p>Welcome to Cyber, your number one source for all things clothes, electronics, watches, and more. We're dedicated to giving you the very best of products, with a focus on dependability, customer service, and uniqueness.</p>
+    <div class="container">
+        <h2>Update Profile</h2>
+        <div class="profile-header">
+            <img src="img/download.png" alt="Profile Picture" id="profilePic">
+            <h2 id="userName">Loading...</h2>
+            <p>Email: <span id="userEmail">Loading...</span></p>
+            <p>Phone: <span id="userPhone">Loading...</span></p>
         </div>
-        <div class="about-content">
-            <div class="about-image">
-                <img src="img/about/about.png" alt="About Us">
-            </div>
-            <div class="about-text">
-                <h2>Our Story</h2>
-                <p>Founded in 2024 by Ahmed Adel, Cyber has come a long way from its beginnings in Menofia, Egypt. When Ahmed Adel first started out, his passion for eco-friendly products drove him to quit his day job and do tons of research, which gave him the impetus to turn hard work and inspiration into a booming online store. We now serve customers all over the world and are thrilled to be a part of the eco-friendly and fair trade wing of the industry.</p>
-                <h2>Our Mission</h2>
-                <p>We hope you enjoy our products as much as we enjoy offering them to you. If you have any questions or comments, please don't hesitate to contact us.</p>
-                <p>Sincerely,<br>Ahmed Adel, Elshohada-Menofia-Egypt</p>
-            </div>
+        <div class="form-groupsetting">
+            <label for="inputEmail">Email:</label>
+            <input type="text" id="inputEmail" placeholder="Enter your name">
         </div>
-    </section>
-
+        <div class="form-groupsetting">    
+            <label for="inputName">Name:</label>
+            <input type="text" id="inputName" placeholder="Enter your name">
+        </div>
+        <div class="form-groupsetting">
+            <label for="inputPhone">Phone:</label>
+            <input type="text" id="inputPhone" placeholder="Enter your phone number">
+        </div>
+        
+        <div class="form-groupsetting">
+            <button onclick="updateProfile()">Save Changes</button>
+        </div>
+        
+        <div class="message" id="message"></div>
+    </div>
     <footer class="section-p1">
         <div class="col">
             <img class="logo" src="img/Logo (1).png" alt="">
@@ -124,7 +125,9 @@
         <div class="copyright">
                 <p>© 2022 All rights reserved. Reliance Retail Ltd.</p>
         </div>
-    <script src="java_script/about.js"></script>
+    
     </footer>
+    <script src="java_script/profile_setting.js">
+      </script>
 </body>
 </html>

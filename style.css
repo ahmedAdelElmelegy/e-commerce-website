@@ -123,6 +123,10 @@ body {
 
 
 /* header start */
+
+
+
+
 #header {
   display: flex;
   align-items: center;
@@ -191,6 +195,66 @@ body {
   width: 100%;
   height: auto;
 }
+
+.menu-icon {
+  position: relative;
+  cursor: pointer;
+}
+
+
+
+
+
+
+
+/* setting menu */
+.settings-menu {
+  margin-top: 10px;
+  display: none;
+  position: absolute;
+  top: 40px;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  border-radius: 8px;
+  z-index: 1000;
+}
+
+.settings-item {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.settings-item:last-child {
+  border-bottom: none;
+}
+
+.settings-item i {
+  font-size: 18px;
+  margin-right: 10px;
+}
+
+.settings-item span {
+  font-size: 16px;
+  color: #333;
+}
+
+.settings-item:hover {
+  background-color: #088178;
+}
+
+.icon-text {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
 /* CSS to style the loading indicator */
 
 .loading-overlay {
@@ -1748,4 +1812,83 @@ h1 {
   margin-top: 20px;
   font-size: 18px;
   font-weight: bold;
+}
+
+
+
+
+
+
+
+
+/* profile setting */
+.container {
+  width: 100%;
+display: flex;
+justify-content: center;
+flex-direction: column;
+align-items: center;
+  margin-top: 50px auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+h2 {
+  text-align: center;
+}
+.form-groupsetting {
+  width: 30%;
+  margin-bottom: 15px;
+}
+.form-groupsetting label {
+  display: block;
+  margin-bottom: 5px;
+}
+.form-groupsetting input {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+}
+.form-groupsetting button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.form-groupsetting button:hover {
+  background-color: #0056b3;
+}
+.message {
+  text-align: center;
+  margin-top: 15px;
+}
+.profile-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.profile-header img {
+  
+  border: 1px solid #007BFF;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.profile-header h2 {
+  margin: 0;
+  font-size: 24px;
+  color: #333;
+}
+
+.profile-header p {
+  color: #777;
+  margin-top: 5px;
+  font-size: 14px;
 }
