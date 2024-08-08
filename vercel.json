@@ -1,13 +1,3 @@
 {
-  "version": 2,
-  "routes": [
-    {
-      "source": "/feedback/:type",
-      "destination": "/api/feedback/:id"
-    },
-    {
-      "source": "/feedback/:id",
-      "destination": "/api/feedback/:id"
-    }
-  ]
+  "rewrites": [{ "source": "/(.*)", "destination": "/api" }]
 }
