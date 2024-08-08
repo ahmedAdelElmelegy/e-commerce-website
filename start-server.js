@@ -1,19 +1,12 @@
-const { spawn } = require('child_process');
+const cors_proxy = require('cors-anywhere');
 
-// Spawn the server script
-const server = spawn('node', ['cors-server.js']);
+const host = process.env.HOST || '0.0.0.0';
+const port = process.env.PORT || 8080;
 
-// Handle stdout
-server.stdout.on('data', (data) => {
-    console.log(`stdout: ${data}`);
-});
-
-// Handle stderr
-server.stderr.on('data', (data) => {
-    console.error(`stderr: ${data}`);
-});
-
-// Handle process exit
-server.on('close', (code) => {
-    console.log(`CORS server process exited with code ${code}`);
-});
+module.exports = (req, res) => {
+  cors_proxy.createServer({
+    originWhitelist: [], // Allow all origins
+    requireHeader: ['origin', 'x-requested-with'],
+    removeHeaders: ['cookie', 'cookie2']
+  }).emit('request', req, res);
+};
