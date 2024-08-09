@@ -1,7 +1,15 @@
 function Api(key) {
     return 'http://localhost:8080/https://student.valuxapps.com/api/' + key;
 }
-
+// show dialog
+const showAlert = (message) => {
+    const alertBox = document.getElementById('alert');
+    if (alertBox) {
+        alertBox.textContent = message;
+        alertBox.classList.add('show');
+        setTimeout(() => alertBox.classList.remove('show'), 3000); // Hide alert after 3 seconds
+    }
+};
 
 function isUserAuthenticated() {
     return !!localStorage.getItem('token');
@@ -187,6 +195,7 @@ const addToCart = (productId, cartLink) => {
             if (cartIcon) {
                 cartIcon.classList.remove('fa-cart-shopping');
                 cartIcon.classList.add('fa-check');
+                showAlert('Product added to cart')
                 console.log('product added to cart');
                 
             }

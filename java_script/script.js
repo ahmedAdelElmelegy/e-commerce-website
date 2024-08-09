@@ -4,8 +4,15 @@
     return 'http://localhost:8080/https://student.valuxapps.com/api/' + key;
 }
 
-
-
+// dialog
+const showAlert = (message) => {
+    const alertBox = document.getElementById('alert');
+    if (alertBox) {
+        alertBox.textContent = message;
+        alertBox.classList.add('show');
+        setTimeout(() => alertBox.classList.remove('show'), 3000); // Hide alert after 3 seconds
+    }
+};
 
 
 // featch category
@@ -202,7 +209,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     console.log('User is not authenticated');
                     window.location.href = 'signup.html';
                 } else {
-                    addToCart(productId, cartLink);
+                  
+                    addToCart(productId, cartLink); 
                 }
             }
         });
@@ -241,6 +249,8 @@ const addToCart = (productId, cartLink) => {
                 cartIcon.classList.remove('fa-cart-shopping');
                 cartIcon.classList.add('fa-check');
                 console.log('product added to cart');
+                showAlert('Product added to cart');
+
                 
             }
 

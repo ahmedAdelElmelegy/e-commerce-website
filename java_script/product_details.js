@@ -3,8 +3,15 @@ function Api(key) {
     return 'http://localhost:8080/https://student.valuxapps.com/api/' + key;
 }
 
-
-
+// showdialog
+const showAlert = (message) => {
+    const alertBox = document.getElementById('alert');
+    if (alertBox) {
+        alertBox.textContent = message;
+        alertBox.classList.add('show');
+        setTimeout(() => alertBox.classList.remove('show'), 3000); // Hide alert after 3 seconds
+    }
+};
 
 // product details
 document.addEventListener('DOMContentLoaded', () => {
@@ -86,14 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
         alert('No product selected');
     }
 });
-const showAlert = (message) => {
-    const alertBox = document.getElementById('alert');
-    if (alertBox) {
-        alertBox.textContent = message;
-        alertBox.classList.add('show');
-        setTimeout(() => alertBox.classList.remove('show'), 3000); // Hide alert after 3 seconds
-    }
-};
+
 // add product details to cart
 const addToCart = (productId, button) => {
     const authToken = localStorage.getItem('token');
@@ -369,6 +369,7 @@ function Api(key) {
                     cartIcon.classList.remove('fa-cart-shopping');
                     cartIcon.classList.add('fa-check');
                     console.log('product added to cart');
+                    showAlert('Product added to cart');
                     
                 }
     
@@ -378,3 +379,19 @@ function Api(key) {
         })
         .catch(error => console.error('Error adding product to cart:', error));
     };
+
+
+    // check if login or not
+    document.addEventListener('DOMContentLoaded', () => {
+   
+        const authToken = localStorage.getItem('token');
+    
+        const signUpLink = document.querySelector('#navbar a.changeIcon');
+    
+        if (authToken) {
+            signUpLink.innerHTML = '<img src="img/download.png" alt="User" class="profile-image">';
+            signUpLink.classList.remove('changeIcon');
+            signUpLink.classList.add('profile-link');
+        }
+    });
+    
