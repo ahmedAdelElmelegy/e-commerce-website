@@ -50,10 +50,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 // fetch product
-
-
-
 
 function isUserAuthenticated() {
     return !!localStorage.getItem('token');
@@ -138,6 +148,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     proDiv.appendChild(cartLink);
 
                     container.appendChild(proDiv);
+                    img.addEventListener('click', () => {
+                        localStorage.setItem('selectedProductId', product.id);
+                        window.location.href = 'product_details.html';
+                    });
                 });
             } else {
                 console.error('Expected an array of products but received:', productList);
@@ -240,6 +254,11 @@ const addToCart = (productId, cartLink) => {
 
 
  
+
+
+
+
+
 
 // banner
 
