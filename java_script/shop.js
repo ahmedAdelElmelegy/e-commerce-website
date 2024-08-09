@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         // Display initial set of products
-        displayProducts(allProducts.slice(0, 21), productListfirst);
+        displayProducts(allProducts, productListfirst);
 
         // Search functionality
         const searchInput = document.getElementById('productSearch');

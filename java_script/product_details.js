@@ -250,7 +250,7 @@ function Api(key) {
                         }
     
                         const priceH4 = document.createElement('h4');
-                        priceH4.textContent ='$${product.price}';
+                        priceH4.textContent = `$${product.price}`;
     
                         desDiv.appendChild(brandSpan);
                         desDiv.appendChild(titleH5);
@@ -287,7 +287,7 @@ function Api(key) {
             };
     
             // Display initial set of products
-            displayProducts(products.slice(0, 21), productListfirst);
+            displayProducts(products, productListfirst);
           
     
             if (isUserAuthenticated()) {

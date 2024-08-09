@@ -236,6 +236,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+
+// if user login or not
 document.addEventListener('DOMContentLoaded', () => {
    
     const authToken = localStorage.getItem('token');
