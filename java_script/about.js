@@ -26,7 +26,7 @@ document.addEventListener('click', function(event) {
         menu.style.display = 'none';
     }
 });
-// navgate to settings profile
+// navgate to settings menu 
 document.addEventListener('DOMContentLoaded', function() {
     // Event listeners for each settings item
     document.getElementById('profile_settings').addEventListener('click', function() {
