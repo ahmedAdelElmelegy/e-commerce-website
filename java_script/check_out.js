@@ -179,51 +179,167 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // Handle form submission
-    const placeOrderButton = document.getElementById('place-order-button');
-    if (placeOrderButton) {
-        placeOrderButton.addEventListener('click', () => {
-            const formData = new FormData(document.getElementById('checkout-form'));
-            const orderDetails = Object.fromEntries(formData.entries());
-            orderDetails.cart_items = Array.from(document.querySelectorAll('#cart-items tbody tr')).map(row => {
-                const product = row.querySelector('.product-info h3').textContent;
-                const price = parseFloat(row.querySelector('.price').textContent.replace('$', ''));
-                const quantity = parseInt(row.querySelector('.quantity').value);
-                const total = parseFloat(row.querySelector('.subtotal').textContent.replace('$', ''));
-                return { product, price, quantity, total };
-            });
+   
 
-            console.log('Order Details:', orderDetails);
-
-            // Submit order
-            fetch(Api('orders'), {
-                method: 'POST',
-                headers: {
-                    'lang': 'en',
-                    'Content-Type': 'application/json',
-                    'Authorization': authToken
-                },
-                body: JSON.stringify(orderDetails)
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.status) {
-                    alert('Order placed successfully!');
-                    window.location.href = 'index.html';
-                } else {
-                    alert('Failed to place order: ' + data.message);
-                }
-            })
-            .catch(error => console.error('Error placing order:', error));
-        });
-    } else {
-        console.error('Place Order button not found');
-    }
-
+   
     fetchCartItems(); 
 
 
 
-    document.addEventListener('DOMContentLoaded', () => {
+
+
+
+  
+});
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    const paymentMethodSelect = document.getElementById('payment-method');
+    const dashboardPayment = document.getElementById('dashboard-payment');
+    const placeOrderButton = document.getElementById('place-order-button');
+    const submitPaymentButton = document.getElementById('submit-payment');
+    const orderConfirmation = document.getElementById('order-confirmation');
+    const orderDetails = document.getElementById('order-details');
+
+    // Hide the DashboardPayment by default
+    dashboardPayment.classList.remove('show');
+
+    // Show DashboardPayment if "Credit Card" is selected
+    paymentMethodSelect.addEventListener('change', function () {
+        if (paymentMethodSelect.value === 'credit_card') {
+            dashboardPayment.classList.add('show');
+        } else {
+            dashboardPayment.classList.remove('show');
+        }
+    });
+
+    // Handle place order button click
+    placeOrderButton.addEventListener('click', function (event) {
+        event.preventDefault(); // Prevent form submission
+
+        const paymentMethod = paymentMethodSelect.value;
+
+        if (paymentMethod === 'credit_card') {
+            // Display the DashboardPayment
+            dashboardPayment.classList.add('show');
+        } else if (paymentMethod === 'paypal') {
+            // Handle PayPal payment method
+            orderConfirmation.style.display = 'block';
+            orderDetails.innerHTML = `
+                <p><strong>Payment Method:</strong> PayPal</p>
+                <p>Your PayPal account will be charged.</p>
+            `;
+        } else {
+            alert('Please select a payment method.');
+        }
+    });
+
+    // Handle submit payment button click
+    submitPaymentButton.addEventListener('click', function (event) {
+        event.preventDefault(); // Prevent form submission
+
+        const cardNumber = document.getElementById('card-number').value || '**** **** **** 1234';
+        const expiryDate = document.getElementById('expiry-date').value || '12/24';
+        const cvv = document.getElementById('cvv').value || '***';
+
+        // Save payment details to local storage
+        localStorage.setItem('paymentDetails', JSON.stringify({
+            cardNumber: cardNumber,
+            expiryDate: expiryDate,
+            cvv: cvv
+        }));
+
+        // Display order confirmation
+        orderConfirmation.style.display = 'block';
+        orderDetails.innerHTML = `
+            <p><strong>Payment Method:</strong> Credit Card</p>
+            <p><strong>Card Number:</strong> ${cardNumber}</p>
+            <p><strong>Expiry Date:</strong> ${expiryDate}</p>
+            <p><strong>CVV:</strong> ${cvv}</p>
+        `;
+
+        // Optionally, you could hide the dashboard payment form
+        dashboardPayment.classList.remove('show');
+    });
+});
+// save orders
+
+// open a new window placed payment method to orders
+document.addEventListener('DOMContentLoaded', function () {
+    const paymentMethodSelect = document.getElementById('payment-method');
+    const dashboardPayment = document.getElementById('dashboard-payment');
+    const placeOrderButton = document.getElementById('place-order-button');
+    const orderConfirmation = document.getElementById('order-confirmation');
+    const orderDetails = document.getElementById('order-details');
+
+    // Hide the DashboardPayment by default
+    dashboardPayment.classList.remove('show');
+
+    // Show DashboardPayment if "Credit Card" is selected
+    paymentMethodSelect.addEventListener('change', function () {
+        if (paymentMethodSelect.value === 'credit_card') {
+            dashboardPayment.classList.add('show');
+        } else {
+            dashboardPayment.classList.remove('show');
+        }
+    });
+
+    // Handle place order button click
+    placeOrderButton.addEventListener('click', function (event) {
+        event.preventDefault(); // Prevent form submission
+
+        const paymentMethod = paymentMethodSelect.value;
+        const cartItems = document.querySelectorAll('#cart-items tbody tr');
+        let cartSummary = '';
+        let subtotal = 0;
+        let total = 0;
+
+        // Build the cart summary
+        cartItems.forEach(row => {
+            const product = row.cells[0].textContent;
+            const price = parseFloat(row.cells[1].textContent.replace('$', ''));
+            const quantity = parseInt(row.cells[2].textContent);
+            const rowTotal = price * quantity;
+
+            subtotal += price;
+            total += rowTotal;
+
+            cartSummary += `
+                <tr>
+                    <td>${product}</td>
+                    <td>$${price.toFixed(2)}</td>
+                    <td>${quantity}</td>
+                    <td>$${rowTotal.toFixed(2)}</td>
+                </tr>
+            `;
+        });
+
+        subtotal = subtotal.toFixed(2);
+        total = total.toFixed(2);
+
+        // Save order details to localStorage
+        localStorage.setItem('orderSummary', JSON.stringify({
+            cartSummary: cartSummary,
+            subtotal: subtotal,
+            total: total,
+            paymentMethod: paymentMethod === 'credit_card' ? {
+                cardNumber: document.getElementById('card-number').value || '**** **** **** 1234',
+                expiryDate: document.getElementById('expiry-date').value || '12/24',
+                cvv: document.getElementById('cvv').value || '***'
+            } : null
+        }));
+
+        // Open the new window with order details
+        window.open('orders.html', '_blank');
+    });
+});
+
+
+
+// change image if user login
+
+
+  document.addEventListener('DOMContentLoaded', () => {
    
         const authToken = localStorage.getItem('token');
     
@@ -235,19 +351,3 @@ document.addEventListener('DOMContentLoaded', () => {
             signUpLink.classList.add('profile-link');
         }
     });
-});
-
-
-// if user login or not
-document.addEventListener('DOMContentLoaded', () => {
-   
-    const authToken = localStorage.getItem('token');
-
-    const signUpLink = document.querySelector('#navbar a.changeIcon');
-
-    if (authToken) {
-        signUpLink.innerHTML = '<img src="img/download.png" alt="User" class="profile-image">';
-        signUpLink.classList.remove('changeIcon');
-        signUpLink.classList.add('profile-link');
-    }
-});

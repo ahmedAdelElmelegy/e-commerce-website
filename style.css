@@ -43,11 +43,11 @@ p {
 
 .section-p1 {
   padding: 40px 80px;
-  /* used in feature */
+ 
 }
 
 .section-m1 {
-  /* used into banner */
+  
   margin: 40px 0;
 }
 button.normal{
@@ -1870,7 +1870,7 @@ h2 {
 
 .profile-header img {
   
-  border: 1px solid #007BFF;
+  border: 1px solid #007bff;
   width: 120px;
   height: 120px;
   border-radius: 50%;
@@ -1888,4 +1888,63 @@ h2 {
   color: #777;
   margin-top: 5px;
   font-size: 14px;
+}
+
+
+
+
+
+/* snake bar check out  payment*/
+.dashboard-payment {
+  visibility: hidden;
+  min-width: 250px;
+  background-color: blue;
+  color: #fff;
+  text-align: center;
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 30px;
+  transform: translateX(-50%);
+  transition: visibility 0s, opacity 0.5s linear;
+  opacity: 0;
+}
+
+.dashboard-payment.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+.dashboard-payment h3 {
+  margin-bottom: 15px;
+}
+
+.dashboard-payment .form-group {
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.dashboard-payment input[type="text"] {
+  width: calc(100% - 20px);
+  padding: 8px;
+  margin: 5px 0;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.dashboard-payment button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 8px 16px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.dashboard-payment button:hover {
+  background-color: #45a049;
 }
