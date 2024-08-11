@@ -1,4 +1,4 @@
-
+helper
 function Api(key) {
     return 'http://localhost:8080/https://student.valuxapps.com/api/' + key;
 }
@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// add product details to cart
+// add product details to cart of product details
 const addToCart = (productId, button) => {
     const authToken = localStorage.getItem('token');
     if (!authToken) {
@@ -134,22 +134,6 @@ const addToCart = (productId, button) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Function to add a product to the cart and update the icon
-
-
 // Function to fetch cart items
 function fetchCartItems() {
     const authToken = localStorage.getItem('token');
@@ -185,34 +169,34 @@ function fetchCartItems() {
 
 // Function to check user authentication
 const isUserAuthenticated = () => !!localStorage.getItem('token');
-// add list product
-function Api(key) {
-        return 'http://localhost:8080/https://student.valuxapps.com/api/' + key;
-    }
+
+
     
     
    
-    
+    // make list product of product detailes
     
     document.addEventListener('DOMContentLoaded', () => {
         const loadingOverlay = document.querySelector("#loading");
     
         // Show the loading overlay
         loadingOverlay.style.display = "flex";
-    
+    // total url
         const apiUrl = Api('products');
         fetch(apiUrl, {
             headers: {
+                // language :english
                 'lang': 'en',
                 'Content-Type': 'application/json'
             },
         })
         .then(response => response.json())
         .then(data => {
+            // get the Map and the list of list product 
             const products = data.data.data;
             const productListfirst = document.getElementById('AllProductList');
          
-    
+    // if null ?not found
             if (!productListfirst ) {
                 console.error('Element with id "product-list-first" or "product-list-second" not found.');
                 return;
@@ -221,7 +205,7 @@ function Api(key) {
             // Function to display products
             const displayProducts = (productList, container) => {
                 container.innerHTML = '';
-    
+    // create item by  div ,img ,span h5 by js
                 if (Array.isArray(productList)) {
                     productList.forEach(product => {
                         const proDiv = document.createElement('div');
@@ -242,7 +226,7 @@ function Api(key) {
     
                         const starDiv = document.createElement('div');
                         starDiv.classList.add('star');
-    
+    // create 5 star
                         for (let i = 0; i < 5; i++) {
                             const starIcon = document.createElement('i');
                             starIcon.classList.add('fas', 'fa-star');
@@ -274,7 +258,7 @@ function Api(key) {
     
     
                         
-    
+    // when click to img go to product detailes in product item
                     img.addEventListener('click', () => {
                         localStorage.setItem('selectedProductId', product.id);
                         window.location.href = 'product_details.html';
@@ -292,7 +276,7 @@ function Api(key) {
     
             if (isUserAuthenticated()) {
                 const authToken = localStorage.getItem('token');
-    
+    // add to cart by token of user
              fetch(Api('carts'), {
                     headers: {
                         'lang': 'en',
@@ -320,7 +304,7 @@ function Api(key) {
                 })
                 .catch(error => console.error('Error fetching cart items:', error));
             }
-    
+    // check if token =null? go to signup :add to cart
             document.addEventListener('click', (event) => {
                 const cartLink = event.target.closest('.cart-link');
                 if (cartLink) {
@@ -337,10 +321,11 @@ function Api(key) {
         })
         .catch(error => console.error('Error fetching products:', error))
         .finally(() => {
+            // loading none
             loadingOverlay.style.display = "none";
         });
     });
-    
+    // add to cart in product list by product id
     const addToCart1= (productId, cartLink) => {
         const authToken = localStorage.getItem('token');
         console.log(authToken);

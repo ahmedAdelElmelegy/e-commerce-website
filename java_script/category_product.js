@@ -1,27 +1,29 @@
+
+
+
+// helper
 function Api(key) {
     return 'http://localhost:8080/https://student.valuxapps.com/api/' + key;
 }
 
 
 
-
-
-// 
-
-
-
-
-
+// check if user is  authenticated or not
 const isUserAuthenticated = () => !!localStorage.getItem('token');
-// add list product
-function Api(key) {
-        return 'http://localhost:8080/https://student.valuxapps.com/api/' + key;
-    }
+
+
+
+
+
+
+
+
+
+
     
     
+//    featch product category by select category id
    
-    
-    
     document.addEventListener('DOMContentLoaded', () => {
 
 
@@ -44,7 +46,7 @@ function Api(key) {
             const products = data.data.data;
             const productListfirst = document.getElementById('AllProductList');
          
-    
+    // if null
             if (!productListfirst ) {
                 console.error('Element with id "product-list-first" or "product-list-second" not found.');
                 return;
@@ -75,7 +77,7 @@ function Api(key) {
                         const starDiv = document.createElement('div');
                         starDiv.classList.add('star');
     
-                        for (let i = 0; i < 5; i++) {
+                        for (let i = 0; i < 5; i++) { //5 star
                             const starIcon = document.createElement('i');
                             starIcon.classList.add('fas', 'fa-star');
                             starDiv.appendChild(starIcon);
@@ -124,7 +126,7 @@ function Api(key) {
     
             if (isUserAuthenticated()) {
                 const authToken = localStorage.getItem('token');
-    
+    //   fetch data to cart by icon
              fetch(Api('carts'), {
                     headers: {
                         'lang': 'en',
@@ -160,7 +162,9 @@ function Api(key) {
                     const productId = cartLink.dataset.productId;
                     if (!isUserAuthenticated()) {
                         console.log('User is not authenticated');
+                        // if token =null go to sign up
                         window.location.href = 'signup.html';
+                        
                     } else {
                         addToCart1(productId, cartLink);
                     }
@@ -169,10 +173,11 @@ function Api(key) {
         })
         .catch(error => console.error('Error fetching products:', error))
         .finally(() => {
+            // loading=none
             loadingOverlay.style.display = "none";
         });
     });
-    
+    // add product to cart and change button from cart to check
     const addToCart1= (productId, cartLink) => {
         const authToken = localStorage.getItem('token');
         console.log(authToken);
@@ -212,7 +217,7 @@ function Api(key) {
     };
 
     
-// if user login or not
+// if user login or not if login make image replacement sign up if not  signup
 document.addEventListener('DOMContentLoaded', () => {
    
     const authToken = localStorage.getItem('token');

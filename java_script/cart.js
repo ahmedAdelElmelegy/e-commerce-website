@@ -1,7 +1,7 @@
 function Api(key) {
     return 'http://localhost:8080/https://student.valuxapps.com/api/' + key;
 }
-
+// create an cart item and upload data 
 document.addEventListener('DOMContentLoaded', () => {
     const cartItemsContainer = document.querySelector('.cart-table tbody'); // Use the correct container
     const subtotalElement = document.getElementById('subtotal');
@@ -147,6 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
         .catch(error => console.error('Error updating cart item quantity:', error));
     };
 
+    // remove cart item
     const removeCartItem = (itemId) => {
         const apiUrl = Api(`carts/${itemId}`);
         fetch(apiUrl, {
@@ -171,6 +172,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     fetchCartItems();
 });
+
+
+
 
 
 // check login or not

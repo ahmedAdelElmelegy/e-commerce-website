@@ -7,12 +7,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     form.addEventListener('submit', function(event) {
         event.preventDefault(); // Prevent the form from submitting the traditional way
-
+       // get email value from input
         const email = document.getElementById('email').value;
+        // get password value from input
+
         const password = document.getElementById('password').value;
 
         const payload = {
+            // email
             email: email,
+            // password
             password: password
         };
 
@@ -23,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(payload)
-        })
+        }) 
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -32,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .then(data => {
             console.log('Response data:', data); // Log the response to verify its structure
-
+// status true?store token go to home:error
             if (data.status) {
                 const token = data.data.token;
                 console.log('Token:', token);

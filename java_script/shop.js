@@ -167,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
         loadingOverlay.style.display = "none";
     });
 });
-
+// add product to cart
 const addToCart = (productId, cartLink) => {
     const authToken = localStorage.getItem('token');
     console.log(authToken);

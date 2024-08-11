@@ -9,9 +9,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function fetchContactInfo() {
     // Local CORS proxy
-    const apiUrl = Api('contacts');
+   
 
-    fetch(apiUrl, {
+    fetch(Api('contacts'), {
         headers: {
             'lang': 'en',
             'Content-Type': 'application/json'
@@ -44,7 +44,7 @@ function fetchContactInfo() {
         })
         .catch(error => console.error("Error fetching contact info:", error));
 }
-
+// if login replace image on asignup if not signup text
 
 document.addEventListener('DOMContentLoaded', () => {
    

@@ -9,12 +9,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     form.addEventListener('submit', function(event) {
         event.preventDefault(); // Prevent the form from submitting the traditional way
-
+// get values from input name phone email pass
         const name = document.getElementById('name').value;
         const phone = document.getElementById('phone').value;
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
-
+// load into map payload
         const payload = {
             name: name,
             phone: phone,
@@ -22,19 +22,20 @@ document.addEventListener('DOMContentLoaded', () => {
             password: password
         };
 
-        // Local CORS proxy
-       ;
-
+       
+// set the data into register
         fetch(Api('register'), {
             method: 'POST',
             headers: {
                  'lang':'en',
                 'Content-Type': 'application/json'
             },
+            // load map
             body: JSON.stringify(payload)
         })
         .then(response => response.json())
         .then(data => {
+            // response true returen data:error
             if (data.status) {
                 alert('Signup successful!');
                 form.reset(); // Reset the form
@@ -48,6 +49,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+
+
 // check login or not
 
 
@@ -58,6 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const signUpLink = document.querySelector('#navbar a.changeIcon');
 
     if (authToken) {
+        // if login?image :signup
         signUpLink.innerHTML = '<img src="img/download.png" alt="User" class="profile-image">';
         signUpLink.classList.remove('changeIcon');
         signUpLink.classList.add('profile-link');

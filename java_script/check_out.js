@@ -1,4 +1,4 @@
-
+// helper
 function Api(key) {
     return 'http://localhost:8080/https://student.valuxapps.com/api/' + key;
 }
@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // Update cart totals
+    // Update cart totals price
     const updateCartTotals = (items) => {
         let subtotal = 0;
         items.forEach(item => {
@@ -191,7 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   
 });
-
+// replace data to order
 
 document.addEventListener('DOMContentLoaded', function () {
     const paymentMethodSelect = document.getElementById('payment-method');

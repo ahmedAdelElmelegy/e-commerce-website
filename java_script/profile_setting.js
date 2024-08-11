@@ -1,5 +1,8 @@
-const API_URL = 'http://localhost:8080/https://student.valuxapps.com/api/';
 
+
+// helper
+const API_URL = 'http://localhost:8080/https://student.valuxapps.com/api/';
+// check if token found or not if user is authentiction? get token :go to signup
 function getAuthToken() {
     if(localStorage.getItem('token')==null){
      return   window.location.href ='signup.html ';
@@ -7,7 +10,7 @@ function getAuthToken() {
     }
     return localStorage.getItem('token');
 }
-
+// init api method
 function Api(key) {
     const token = getAuthToken();
     return {
@@ -42,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
     })
     .catch(error => console.error('Error fetching profile data:', error));
 });
-
+// update profile
 function updateProfile() {
 const name = document.getElementById('inputName').value.trim();
 const phone = document.getElementById('inputPhone').value.trim();
@@ -61,13 +64,14 @@ return;
 }
 
 console.log('Sending data:', updatedData);
-
+//method update profile
 fetch(Api('update-profile').url, {
 method: 'PUT',
 headers: Api('update-profile').headers,
 body: JSON.stringify(updatedData),
 })
 .then(response => {
+    // if return response ok get response :error
 if (!response.ok) {
     return response.json().then(errorData => {
         throw new Error(`Error: ${errorData.message}`);

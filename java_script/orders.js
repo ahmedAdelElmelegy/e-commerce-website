@@ -1,7 +1,7 @@
 
 
 
-
+// get cart item
 document.addEventListener('DOMContentLoaded', () => {
     const orderSummaryContainer = document.querySelector('#order-summary tbody');
     const subtotalElement = document.getElementById('order-subtotal');
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
         .catch(error => console.error('Error fetching cart items:', error));
     };
 
-    
+    // get total and cart summary and subtotal price from checkout page
     const generateCartSummary = (items) => {
         let cartSummary = '';
         let subtotal = 0;
@@ -54,9 +54,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const rowSubtotal = item.product.price * item.quantity;
             subtotal += item.product.price;
             total += rowSubtotal;
-
+ // make item in orders page img name quntity total 
             cartSummary += `
                 <tr>
+               
                <td> <img src="${item.product.image}" alt=""><td>
                     <td>${item.product.name}</td>
                     <td>$${item.product.price.toFixed(2)}</td>
@@ -86,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
             totalElement.textContent = `$${details.total}`;
         }
         const orderDetails = JSON.parse(localStorage.getItem('orderSummary'));
-
+// get payment method from  checkout
         if (paymentMethodElement) {
             if (orderDetails && orderDetails.paymentMethod) {
                 paymentMethodElement.innerHTML = `
